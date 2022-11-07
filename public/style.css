@@ -6,20 +6,38 @@ body {
     color: rgb(15, 15, 15);
     font-size: larger;
  }
-
- section {
-    height: 39vh;
-    width: 10vw;
+ section{
+   border: dashed;
+   margin: 2%;
+}
+ div {
     display: inline-block;
     margin: 2%;
  }
 
- header{
-    margin: 2%;
+ .menuitem{
+   height: 39vh;
+   width: 10vw;
+   margin: 0%;
  }
 
- .MenuItem {
- 
+ header{
+    margin: 2%;
+    overflow: hidden;
+ }
+
+ #TopPic{
+   opacity: 0.75;
+   width: 96vw; 
+   height: 40vh;
+ }
+
+ #Title{
+   position: relative;
+ }
+
+h2 {
+   margin: 2%;
  }
 
  .description p {
