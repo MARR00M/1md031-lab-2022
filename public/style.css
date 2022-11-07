@@ -1,1 +1,57 @@
 /*empty*/
+@import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
+
+body {
+    font-family: Cambria;
+    color: rgb(15, 15, 15);
+    font-size: larger;
+ }
+
+ section {
+    height: 39vh;
+    width: 10vw;
+    display: inline-block;
+    margin: 2%;
+ }
+
+ header{
+    margin: 2%;
+ }
+
+ .MenuItem {
+ 
+ }
+
+ .description p {
+    font-weight: bold;
+ }
+
+ #MysIsak{
+    background-color: #8cd8b9;
+    color: rgb(0, 0, 0);
+ }
+
+ #GrönaFaran{
+    background-color: #56c699;
+    color: rgb(0, 0, 0);
+ }
+
+ #FruBillys{
+    background-color: #35a075;
+    color: rgb(255, 255, 255);
+}
+
+#FBFB{
+    background-color: #236a4e;
+    color: rgb(255, 255, 255);
+}
+
+#Cutiee{
+    background-color: #1a503a;
+    color: rgb(255, 255, 255);
+}
+
+button:hover {
+    background-color: #8cd8b9;
+    cursor: pointer;
+ }
