@@ -19,11 +19,14 @@ body {
    height: 39vh;
    width: 10vw;
    margin: 0%;
+   text-align: center;
  }
 
  header{
-    margin: 2%;
-    overflow: hidden;
+   position: relative;
+   text-align: center;
+   margin: 2%;
+   overflow: hidden;
  }
 
  #TopPic{
@@ -34,6 +37,8 @@ body {
 
  #Title{
    position: relative;
+   top: -20vh;
+   color: white;
  }
 
 h2 {
@@ -43,6 +48,11 @@ h2 {
  .description p {
     font-weight: bold;
  }
+
+ button:hover {
+   background-color: #8cd8b9;
+   cursor: pointer;
+}
 
  #MysIsak{
     background-color: #8cd8b9;
@@ -68,8 +78,3 @@ h2 {
     background-color: #1a503a;
     color: rgb(255, 255, 255);
 }
-
-button:hover {
-    background-color: #8cd8b9;
-    cursor: pointer;
- }
