@@ -1,28 +1,7 @@
 /*empty*/
 @import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
 
-body {
-    font-family: Cambria;
-    color: rgb(15, 15, 15);
-    font-size: larger;
- }
- section{
-   border: dashed;
-   margin: 2%;
-}
- div {
-    display: inline-block;
-    margin: 2%;
- }
-
- .menuitem{
-   height: 39vh;
-   width: 10vw;
-   margin: 0%;
-   text-align: center;
- }
-
- header{
+header{
    position: relative;
    text-align: center;
    margin: 2%;
@@ -41,6 +20,19 @@ body {
    color: white;
  }
 
+body {
+    font-family: Cambria;
+    color: rgb(15, 15, 15);
+    font-size: larger;
+ }
+ section{
+   border: dashed;
+   margin: 2%;
+}
+ div {
+    margin: 2%;
+ }
+
 h2 {
    margin: 2%;
  }
@@ -54,27 +46,47 @@ h2 {
    cursor: pointer;
 }
 
+.wrapper {
+   display: flex;
+}
+
+.menuitem{
+   flex-grow: 1;
+   margin: 0%;
+   text-align: center;
+ }
+
  #MysIsak{
     background-color: #8cd8b9;
     color: rgb(0, 0, 0);
+    grid-column: 1;
+    grid-row: 1;
  }
 
  #GrönaFaran{
     background-color: #56c699;
     color: rgb(0, 0, 0);
+    grid-column: 2;
+    grid-row: 1;
  }
 
  #FruBillys{
     background-color: #35a075;
     color: rgb(255, 255, 255);
+    grid-column: 3;
+    grid-row: 1;
 }
 
 #FBFB{
     background-color: #236a4e;
     color: rgb(255, 255, 255);
+    grid-column: 4;
+    grid-row: 1;
 }
 
 #Cutiee{
     background-color: #1a503a;
     color: rgb(255, 255, 255);
+    grid-column: 5;
+    grid-row: 1;
 }
