@@ -18,6 +18,18 @@ import io from 'socket.io-client'
 
 const socket = io();
 
+let friends =[
+  {name: "MysIsak", URL: "20211204_004757.jpg", kCal: "Mysig", gluten_lactose: "Rolig"},
+  {name: "GrönaFaran", URL: "20220115_213531.jpg", kCal: "Livlig", gluten_lactose: "Stark -kolla in biccarna-"},
+  {name: "FruBillys", URL: "20220410_122544.jpg", kCal: "Har alltid med sig Billys", gluten_lactose: "Stylish"},
+  {name: "FB-FB", URL: "20220402_192541.jpg", kCal: "Tar alltid med sig festen", gluten_lactose: "Försvinner i dimman"},
+  {name: "TheCutiee", URL: "20220122_011611.jpg", kCal: "Gullig", gluten_lactose: "Bästa snusvännen"},
+]
+
+function MenuItem(name, URL, kCal, gluten_lactose){
+
+}
+
 export default {
   name: 'HomeView',
   components: {
@@ -25,10 +37,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers: friends
     }
   },
   methods: {
