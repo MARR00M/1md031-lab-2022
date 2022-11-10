@@ -1,6 +1,7 @@
 <template>
     <div>
-      {{ burger.name }} {{ burger.kCal }}
+      <img v-binds:src="burger.URL">
+      {{ burger.name }} {{ burger.kCal }}   <!-- Fyll på med det som ska visas?-->
     </div>
   </template>
   

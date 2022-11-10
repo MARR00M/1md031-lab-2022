@@ -1,11 +1,13 @@
-<template>
+<template> 
   <div>
     <div>
-      Burgers
+      {{namn}}
+      Friends
       <Burger v-for="burger in burgers"
               v-bind:burger="burger" 
               v-bind:key="burger.name"/>
     </div>
+    Namn: <input type="text" v-model="namn" placeholder="För- och Efternamn">
     <div id="map" v-on:click="addOrder">
       click here
     </div>
@@ -37,7 +39,8 @@ export default {
   },
   data: function () {
     return {
-      burgers: friends
+      burgers: friends, 
+      namn: ""
     }
   },
   methods: {
@@ -48,8 +51,8 @@ export default {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
+                                details: { x: event.offsetX - 10, //generalisera hårdkodningen (10 är inge bra, gör den relativ till cirkelns radie)
+                                           y: event.offsetY - 10},
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
@@ -63,5 +66,12 @@ export default {
     width: 300px;
     height: 300px;
     background-color: red;
+    cursor: pointer;
+  }
+  #map:hover {
+    background-color: pink;
+  }
+  input {
+    font-family: Cambria;
   }
 </style>

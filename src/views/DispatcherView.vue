@@ -13,6 +13,8 @@
       </div>
     </div>
   </template>
+
+
   <script>
   import io from 'socket.io-client'
   const socket = io();
@@ -25,7 +27,7 @@
       }
     },
     created: function () {
-      socket.on('currentQueue', data =>
+      socket.on('currentQueue', data => //{orders: {...}}
         this.orders = data.orders);
     },
     methods: {
@@ -35,6 +37,8 @@
     }
   }
   </script>
+
+
   <style>
   #orderList {
     top:1em;

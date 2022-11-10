@@ -44,6 +44,25 @@ const io = require('socket.io')(http, {cookie: false});
 // prepare for multiple instances of data if necessary
 function Data() {
   this.orders = {};
+
+  /*
+  {
+  45: {orderID: 45, 
+    details:{
+    x:154,
+    y:124,
+    }
+  orderIteams: "Beans", "burgers"]
+  }
+ 45353: {orderID: 45353, 
+    details:{
+    x:154,
+    y:124,
+    }
+  orderIteams: "Beans", "burgers"]
+  }
+  }
+  */
 }
 
 /*
