@@ -6,7 +6,6 @@
       <h1 id="Title">Välkommen Till De Vänner Du Behöver</h1>
     </header>
    <main>
-    <div>
       <h2>Vänner på lager</h2>
       <section>
         <div class="wrapper">
@@ -15,20 +14,18 @@
               v-bind:key="burger.name"/>
             </div>
             </section>
-    </div>
-    Namn: <input type="text" v-model="namn" placeholder="För- och Efternamn">{{namn}}
-    <div id="map" v-on:click="addOrder">
-      click here
-    </div>
       <section>
-         <h2>Kundinformation</h2>
+         <h2>Beställningsinformation</h2>
          <div>
-            Nedan fyller du i all nödvändig information
             <h3>Nödvändig Information För Att Skapa Er Vänskap</h3>
             <h4>Ditt Fullständiga Namn</h4>
-            <input type="text" placeholder="För- och Efternamn">
+            <input type="text" v-model="namn" placeholder="För- och Efternamn">{{namn}}
             <h4>Din E-mail</h4>
-            <input type="text" placeholder="E-mail">
+            <input type="text" v-model="eMail" placeholder="E-mail">{{eMail}}
+            <h4>Vart du vill mötas upp</h4>
+            <div id="map" v-on:click="addOrder">
+            click here
+            </div>
             <h4>Dubbellkolla att allt ovan stämmer inann du beställer</h4>
             <button> Beställ </button>
          </div>
