@@ -4,9 +4,10 @@
             <img class="image" v-bind:src="burger.imgSrc">
             <footer>
                <div class="description">
-                  <p>{{ burger.atributes[0] }}</p>
-                  <p>{{ burger.atributes[1] }}</p>
-                  Pris: {{ burger.price }}SEK
+                  <p>Rolig: {{ burger.rolig }}</p>
+                  <p>Snäll: {{ burger.snäll }}</p>
+                  <p>Pris: {{ burger.price }}SEK</p>
+                  Amount: <button v-on:click="decreaseAmount"> - </button> {{ amountOrdered }} <button v-on:click="increaseAmount"> + </button>
                </div>
              </footer>
              </div>
@@ -14,11 +15,32 @@
   
   <script>
   export default {
+   data: function () {
+  return {
+    amountOrdered: 0,
+  }
+},
     name: 'OneBurger',
     props: {
       burger: Object
-    }
+    },
+    methods: {
+    decreaseAmount: function (event) {
+      this.amountOrdered -= 1;
+    this.$emit('orderedBurger', { name:   this.burger.name, 
+                                amount: this.amountOrdered 
+                              
+    });
+  },
+    increaseAmount: function (event) {
+      this.amountOrdered++;
+    this.$emit('orderedBurger', { name:   this.burger.name, 
+                                amount: this.amountOrdered 
+                              
+    });
+  },
   }
+}
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->

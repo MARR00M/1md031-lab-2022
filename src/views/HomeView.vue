@@ -1,5 +1,4 @@
 <template> 
-
 <div>
   <header>
       <img src="IMG_6544.JPG" id="TopPic" title="TopPic">
@@ -11,7 +10,8 @@
         <div class="wrapper">
       <Burger v-for="burger in burgers"
               v-bind:burger="burger" 
-              v-bind:key="burger.name"/>
+              v-bind:key="burger.name"
+              v-on:orderedBurger="addToOrder($event)"/>
             </div>
             </section>
       <section>
@@ -19,15 +19,15 @@
          <div>
             <h3>Nödvändig Information För Att Skapa Er Vänskap</h3>
             <h4>Ditt Fullständiga Namn</h4>
-            <input type="text" v-model="namn" placeholder="För- och Efternamn">{{namn}}
+            <input type="text" v-model="namn" placeholder="För- och Efternamn">
             <h4>Din E-mail</h4>
-            <input type="text" v-model="eMail" placeholder="E-mail">{{eMail}}
+            <input type="text" v-model="email" placeholder="E-mail">
             <h4>Vart du vill mötas upp</h4>
             <div id="map" v-on:click="addOrder">
             click here
             </div>
             <h4>Dubbellkolla att allt ovan stämmer inann du beställer</h4>
-            <button> Beställ </button>
+            <button v-on:click="orderPressed"> Beställ </button>
          </div>
       </section>
    </main>
@@ -44,18 +44,19 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
+import menu from '../assets/menu.json'
 
 const socket = io();
 
 let friends =[
-  {name: "MysIsak", price: 200, imgSrc: "20211204_004757.jpg", atributes: ["Mysig", "Rolig"],  column: 1, row: 1},
-  {name: "GrönaFaran", price: 250, imgSrc: "20220115_213531.jpg", atributes: ["Livlig", "Stark -kolla in biccarna-"],  column: 2, row: 1},
-  {name: "FruBillys", price: 275, imgSrc: "20220410_122544.jpg", atributes: ["Har alltid med sig Billys", "Stylish"],  column: 3, row: 1},
-  {name: "FB-FB", price: 0.25, imgSrcL: "20220402_192541.jpg", atributes: ["Tar alltid med sig festen", "Försvinner i dimman"],  column: 4, row: 1},
-  {name: "TheCutiee", price: 2000, imgSrc: "20220122_011611.jpg", atributes: ["Gullig", "Bästa snusvännen"],  column: 5, row: 1},
+  {name: "MysIsak", price: 200, imgSrc: "20211204_004757.jpg", rolig: false, snäll: true},
+  {name: "GrönaFaran", price: 250, imgSrc: "20220115_213531.jpg", rolig: true, snäll: false},
+  {name: "FruBillys", price: 275, imgSrc: "20220410_122544.jpg", rolig: true, snäll: false},
+  {name: "FB-FB", price: 0.25, imgSrcL: "20220402_192541.jpg", rolig: false, snäll: false},
+  {name: "TheCutiee", price: 2000, imgSrc: "20220122_011611.jpg", rolig: true, snäll: true},
 ]
 
-function MenuItem(name, imgSrc, price, atributes){
+function MenuItem(name, imgSrc, price, rolig, snäll){
 
 }
 
@@ -66,14 +67,16 @@ export default {
   },
   data: function () {
     return {
-      burgers: friends, 
+      burgers: menu, 
       namn: "",
+      orderedBurgers: {},
     }
   },
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
+
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
@@ -83,7 +86,15 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
-    }
+    },
+
+    orderPressed: function (event) {
+      let order = {name: this.namn, email: this.email, amountOrdered: this.orderedBurgers}
+      console.log(order)
+    },
+    addToOrder: function (event) {
+  this.orderedBurgers[event.name] = event.amount;
+},
   }
 }
 </script>

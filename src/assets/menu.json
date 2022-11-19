@@ -1,0 +1,42 @@
+
+[
+    {
+      "name": "MysIsak",
+      "price": 200,
+      "rolig": false,
+      "snäll": true,
+      "imgSrc": "20211204_004757.jpg"
+    },
+
+    {
+        "name": "GrönaFaran",
+        "price": 250,
+        "rolig": true,
+        "snäll": false,
+        "imgSrc": "20220115_213531.jpg"
+      },
+
+      {
+        "name": "FruBillys",
+        "price": 275,
+        "rolig": true,
+        "snäll": false,
+        "imgSrc": "20220410_122544.jpg"
+      },
+
+      {
+        "name": "FB-FB",
+        "price": 0.25,
+        "rolig": false,
+        "snäll": false,
+        "imgSrc": "20220402_192541.jpg"
+      },
+
+      {
+        "name": "TheCutiee",
+        "price": 2000,
+        "rolig": true,
+        "snäll": true,
+        "imgSrc": "20220122_011611.jpg"
+      }
+  ]
