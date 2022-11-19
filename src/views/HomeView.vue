@@ -14,6 +14,15 @@
               v-on:orderedBurger="addToOrder($event)"/>
             </div>
             </section>
+            <div id="map_container">
+            <h4>Vart du vill mötas upp?</h4>
+            <div id="map" v-on:click="setLocation">
+              <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" v-bind:key="'dots'">
+            T
+          </div>
+            click here
+            </div>
+          </div>
       <section>
          <h2>Beställningsinformation</h2>
          <div>
@@ -22,10 +31,6 @@
             <input type="text" v-model="namn" placeholder="För- och Efternamn">
             <h4>Din E-mail</h4>
             <input type="text" v-model="email" placeholder="E-mail">
-            <h4>Vart du vill mötas upp</h4>
-            <div id="map" v-on:click="addOrder">
-            click here
-            </div>
             <h4>Dubbellkolla att allt ovan stämmer inann du beställer</h4>
             <button v-on:click="orderPressed"> Beställ </button>
          </div>
@@ -70,6 +75,9 @@ export default {
       burgers: menu, 
       namn: "",
       orderedBurgers: {},
+      location: { x: 0,
+            y: 0
+          },
     }
   },
   methods: {
@@ -77,11 +85,20 @@ export default {
       return Math.floor(Math.random()*100000);
     },
 
+    setLocation: function (event) {
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+      this.location.x = event.offsetX - 10;
+      this.location.y = event.offsetY- 10;
+    },
+
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
+      this.location.x =event.offsetX - 10;
+      this.location.y =event.offsetY - 10;
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.offsetX - 10, //generalisera hårdkodningen (10 är inge bra, gör den relativ till cirkelns radie)
+                                details: { x: event.offsetX - 10,
                                            y: event.offsetY - 10},
                                 orderItems: ["Beans", "Curry"]
                               }
@@ -91,6 +108,12 @@ export default {
     orderPressed: function (event) {
       let order = {name: this.namn, email: this.email, amountOrdered: this.orderedBurgers}
       console.log(order)
+      socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x -10, 
+                                           y: this.location.y -10},
+                                orderItems: [order.name, order.email, order.amountOrdered]
+                              }
+                 );
     },
     addToOrder: function (event) {
   this.orderedBurgers[event.name] = event.amount;
@@ -148,13 +171,32 @@ h2 {
 }
 
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    width:1920px;
+    height: 1078px;
+    background: url("../../public/img/polacks.jpg");
     cursor: pointer;
   }
   #map:hover {
-    background-color: pink;
+    opacity: 0.85;
+  }
+  #map_container{
+    width: 86vw;
+    height: 60vh;
+    margin: 0%;
+    overflow: scroll;
+  }
+  #map div{
+    position: absolute;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
   }
   input {
     font-family: Cambria;
