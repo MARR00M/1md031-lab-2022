@@ -26,7 +26,7 @@
     },
     methods: {
     decreaseAmount: function (event) {
-      this.amountOrdered -= 1;
+      if (this.amountOrdered > 0) {this.amountOrdered = this.amountOrdered - 1;}
     this.$emit('orderedBurger', { name:   this.burger.name, 
                                 amount: this.amountOrdered 
                               

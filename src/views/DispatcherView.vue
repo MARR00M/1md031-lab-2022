@@ -1,8 +1,9 @@
 <template>
     <div id="orders">
       <div id="orderList">
-        <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-          #{{ key }}: {{ order.orderItems.join(", ") }}
+        <div v-for="(order, key) in orders" v-bind:key="'order'+key" >
+          #{{ key }}: {{ 'Beställning: ' + JSON.stringify(order.orderItems)}} 
+          <p class="kundinfo">{{order.name + ', ' + order.email + ', ' + order.kön + ', ' + order.betalningsmetod}}</p>
         </div>
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
@@ -40,6 +41,11 @@
 
 
   <style>
+ .kundinfo{
+font-style: italic;
+font-size:medium;
+}
+
   #orderList {
     top:1em;
     left:1em;

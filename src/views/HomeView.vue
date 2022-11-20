@@ -15,22 +15,40 @@
             </div>
             </section>
             <div id="map_container">
-            <h4>Vart du vill mötas upp?</h4>
+            <h4>Vart vill du mötas upp?</h4>
             <div id="map" v-on:click="setLocation">
               <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" v-bind:key="'dots'">
             T
           </div>
-            click here
             </div>
           </div>
       <section>
          <h2>Beställningsinformation</h2>
          <div>
-            <h3>Nödvändig Information För Att Skapa Er Vänskap</h3>
+            Nödvändig information för att skapa er vänskap
             <h4>Ditt Fullständiga Namn</h4>
             <input type="text" v-model="namn" placeholder="För- och Efternamn">
             <h4>Din E-mail</h4>
             <input type="text" v-model="email" placeholder="E-mail">
+            <h4>Betalningsmedel</h4>
+            <select name="Betalningsmetod" v-model="betalningsmetod">
+              <option value="Kontant"> Kontant </option>
+              <optgroup label ="Kort">
+              <option value="Mastercard"> Mastercard </option>
+              <option value="Visa"> Visa </option>
+              </optgroup>
+              <optgroup label ="Online">
+              <option value="Klarna"> Klarna </option>
+              <option value="Swish"> Swish </option>
+              </optgroup>
+            </select>
+            <h4>Kön</h4>
+            <select name="Kön" v-model="kön">
+              <option value="Icke definerad"> Icke definerad </option>
+              <option value="Man"> Man </option>
+              <option value="Kvinna"> Kvinna </option>
+              <option value="Non-binary"> Non-binary </option>
+            </select>
             <h4>Dubbellkolla att allt ovan stämmer inann du beställer</h4>
             <button v-on:click="orderPressed"> Beställ </button>
          </div>
@@ -39,7 +57,7 @@
 
     <div>
    <footer>
-      <h2><nav> Kontaktinformation </nav></h2>
+      <h2 id="kontaktinformation"><nav> Kontaktinformation </nav></h2>
       För kontakt ring 018-vi-finns-här-för-dig
    </footer>
   </div>
@@ -106,12 +124,16 @@ export default {
     },
 
     orderPressed: function (event) {
-      let order = {name: this.namn, email: this.email, amountOrdered: this.orderedBurgers}
+      let order = {name: this.namn, email: this.email, betalningsmetod: this.betalningsmetod, kön: this.kön, amountOrdered: this.orderedBurgers}
       console.log(order)
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                name: order.name,
+                                email: order.email,
+                                betalningsmetod: order.betalningsmetod,
+                                kön: order.kön,
                                 details: { x: this.location.x -10, 
                                            y: this.location.y -10},
-                                orderItems: [order.name, order.email, order.amountOrdered]
+                                orderItems: [order.amountOrdered]
                               }
                  );
     },
@@ -161,6 +183,10 @@ h2 {
    margin: 2%;
  }
 
+ #kontaktinformation{
+    margin: 0%;
+  }
+
  button:hover {
    background-color: #8cd8b9;
    cursor: pointer;
@@ -186,7 +212,7 @@ h2 {
   #map_container{
     width: 86vw;
     height: 60vh;
-    margin: 0%;
+    margin: 2%;
     overflow: scroll;
   }
   #map div{
