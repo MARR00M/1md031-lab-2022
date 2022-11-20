@@ -2,10 +2,12 @@
             <div class="menuitem">
             <h3>{{ burger.name }}</h3>
             <img class="image" v-bind:src="burger.imgSrc">
-            <footer>
                <div class="description">
-                  <p>Rolig: {{ burger.rolig }}</p>
-                  <p>Snäll: {{ burger.snäll }}</p>
+                  <p v-if=" burger.rolig">Rolig</p>
+                  <p v-if=" burger.snäll">Snäll</p>
+            </div>
+            <footer>
+            <div>
                   <p>Pris: {{ burger.price }}SEK</p>
                   Amount: <button v-on:click="decreaseAmount"> - </button> {{ amountOrdered }} <button v-on:click="increaseAmount"> + </button>
                </div>
@@ -60,6 +62,10 @@
  .image{
   width: 12vw;
   height: 16vw;
+ }
+
+ .description{
+   height: 6vw;
  }
  
  .description p {
