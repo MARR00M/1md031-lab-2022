@@ -4,7 +4,9 @@
             <img class="image" v-bind:src="burger.imgSrc">
                <div class="description">
                   <p v-if=" burger.rolig">Rolig</p>
+                  <p v-else> </p>
                   <p v-if=" burger.snäll">Snäll</p>
+                  <p v-else></p>
             </div>
             <footer>
             <div>
@@ -63,13 +65,10 @@
   width: 12vw;
   height: 16vw;
  }
-
- .description{
-   height: 6vw;
- }
  
  .description p {
     font-weight: bold;
+    height: 16px;
  }
   </style>
   

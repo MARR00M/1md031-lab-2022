@@ -1,9 +1,12 @@
 <template>
     <div id="orders">
       <div id="orderList">
-        <div v-for="(order, key) in orders" v-bind:key="'order'+key" >
-          #{{ key }}: {{ 'Beställning: ' + JSON.stringify(order.orderItems)}} 
-          <p class="kundinfo">{{order.name + ', ' + order.email + ', ' + order.kön + ', ' + order.betalningsmetod}}</p>
+        <div v-for="(order, key) in orders" v-bind:key=key >
+         <p> #{{ key }}:
+          <div v-for="(item, index) in order.orderItems" :key=index>
+          {{index + ' ' + JSON.stringify(item)}} 
+        </div></p>
+        <p class="kundinfo">{{order.name + ', ' + order.email + ', ' + order.kön + ', ' + order.betalningsmetod}}</p>
         </div>
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
@@ -41,6 +44,7 @@
 
 
   <style>
+
  .kundinfo{
 font-style: italic;
 font-size:medium;

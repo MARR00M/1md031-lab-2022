@@ -133,7 +133,7 @@ export default {
                                 kön: order.kön,
                                 details: { x: this.location.x -10, 
                                            y: this.location.y -10},
-                                orderItems: [order.amountOrdered]
+                                orderItems: order.amountOrdered
                               }
                  );
     },
